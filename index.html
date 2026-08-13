@@ -1961,18 +1961,6 @@
             
             
         <div class="event-item">
-                <div class="event-date">08/10(一)</div>
-                <div class="event-details">
-                    <div class="event-title">新領導團隊培訓</div>
-                    <div class="event-meta">
-                        <div class="meta-row"><span class="icon">🕒</span>09:00-12:00</div>
-                        <div class="meta-row"><span class="icon">📍</span>待定</div>
-                    </div>
-                    
-                </div>
-                <button class="manage-btn delete-btn" onclick="deleteEvent(this)" title="刪除">×</button>
-                <button class="manage-btn edit-btn" onclick="editEvent(this)" title="編輯">✎</button>
-            </div><div class="event-item">
                 <div class="event-date">08/12(三)</div>
                 <div class="event-details">
                     <div class="event-title">DnA月例會</div>
@@ -2149,6 +2137,18 @@
                         <div class="meta-row"><span class="icon">📍</span>集思北科大</div>
                     </div>
                     <div class="event-action"><a href="https://www.xn--v0q63ys3erw3c.com/html/main" target="_blank" class="btn-register">📝 我要報名</a></div>
+                </div>
+                <button class="manage-btn delete-btn" onclick="deleteEvent(this)" title="刪除">×</button>
+                <button class="manage-btn edit-btn" onclick="editEvent(this)" title="編輯">✎</button>
+            </div><div class="event-item">
+                <div class="event-date">09/21(一)</div>
+                <div class="event-details">
+                    <div class="event-title">新領導團隊培訓</div>
+                    <div class="event-meta">
+                        <div class="meta-row"><span class="icon">🕒</span>09:00-12:00</div>
+                        <div class="meta-row location-zoom"><span class="icon">📹</span>ZOOM線上</div>
+                    </div>
+
                 </div>
                 <button class="manage-btn delete-btn" onclick="deleteEvent(this)" title="刪除">×</button>
                 <button class="manage-btn edit-btn" onclick="editEvent(this)" title="編輯">✎</button>
@@ -2810,6 +2810,13 @@
                 // 月 * 100 + 日 (例如 3/12 -> 312, 12/5 -> 1205)
                 return parseInt(match[1]) * 100 + parseInt(match[2]);
             }
+
+            // 4. 沒有分隔符的四位數格式 (e.g. 0905-0906 range 取前段後變成 0905 -> 09月05日)
+            const compact = normalized.match(/^(\d{2})(\d{2})/);
+            if (compact) {
+                return parseInt(compact[1]) * 100 + parseInt(compact[2]);
+            }
+
             return 9999; // 如果解析失敗，排到最後
         }
 
